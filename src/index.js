@@ -10,9 +10,13 @@ window.onload = function (event) {
 
   // Key down
   window.addEventListener("keydown", () => {
-    alert(
-      "THERES NOTHING MORE TO SEE. GET YOUR RAGGEDY HANDS OFF MY SCREEN!!!"
-    );
+    const text = document.querySelector("p");
+    text.style.visibility = "hidden";
+  });
+
+  window.addEventListener("keyup", () => {
+    const text = document.querySelector("p");
+    text.style.visibility = "visible";
   });
 };
 
@@ -25,11 +29,34 @@ window.addEventListener("copy", () => {
 //Click
 document.body.addEventListener("click", (event) => {
   event.target.style.color = "limegreen";
+  const text1 = document.querySelector("p");
+  //   text1.style.visibility = "visible";
 });
 
 // Double-Click
 document.body.addEventListener("dblclick", (event) => {
   event.target.classList.toggle("mirror");
+  event.target.style.color = "black";
 });
 
-//Mouse Move & Mouse Over
+//MouseEnter & MouseLeave
+
+const destinations = document.querySelectorAll(".destination");
+for (let destination of destinations) {
+  destination.addEventListener("mouseenter", (event) => {
+    destination.style.border = "10px dotted teal";
+  });
+}
+
+for (let destination of destinations) {
+  destination.addEventListener("mouseleave", (event) => {
+    destination.style.border = "none";
+  });
+}
+
+//Mousemove
+document.body.addEventListener("mousemove", (event) => {
+  const { clientX, clientY } = event;
+  event.preventDefault();
+  //   console.log(`mouse is at ${clientX}, ${clientY}`);
+});
